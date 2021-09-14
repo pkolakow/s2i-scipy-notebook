@@ -48,5 +48,14 @@ MPLBACKEND=Agg python -c "import matplotlib.pyplot"
 (shopt -s dotglob ; rm -rf ${APP_ROOT}/src/*)
 
 # Fix up permissions.
+wget -O /tmp/oneapi-installer.sh https://registrationcenter-download.intel.com/akdlm/irc_nas/18040/l_AIKit_p_2021.3.0.1370.sh
+
+bash /tmp/oneapi-installer.sh -a -c -s --action install --eula=accept --intel-sw-improvement-program-consent=accept
+
+rm -f /tmp/oneapi-installer.sh
+
+/opt/intel/oneapi/intelpython/latest/bin/pip install ipykernel
+
+/opt/intel/oneapi/intelpython/latest/bin/python -m ipykernel install --name python-oneapi --display-name "Python 3 (Intel Optimized)"
 
 fix-permissions /opt/app-root
